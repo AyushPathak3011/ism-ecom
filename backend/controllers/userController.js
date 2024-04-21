@@ -9,11 +9,7 @@ const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
-  // const { email, password } = req.body;
-  // const userInput = { email, password }; // Unsantizied user input
 
-  // Introduce the unsanitized user input directly into the query
-  // const user = await User.findOne(userInput);
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
